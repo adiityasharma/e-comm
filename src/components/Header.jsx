@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logoIcon from "../asset/Icon.svg";
 import { Menu, ShoppingCart, X } from "lucide-react";
 
@@ -7,8 +7,16 @@ const navItems = ["HOME", "BAG", "SNEAKERS", "BELT", "CONTACT"];
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else document.body.style.overflow = "auto";
+  }, [isMobileMenuOpen]);
+
   return (
-    <nav className="relative w-full h-[60px] md:px-0 md:py-0 px-4 border-b-1 border-neutral-300 flex items-center justify-between font-[poppins]">
+    <nav
+      className={`sticky w-full h-[60px] md:px-4 lg:px-0 md:py-0 px-4 bg-white border-b-1 border-neutral-300 flex items-center justify-between font-[poppins] z-999`}
+    >
       <div className="flex items-center gap-2">
         <img
           src={logoIcon}
@@ -50,7 +58,7 @@ const Header = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="absolute p-4 left-0 top-[65px] md:hidden w-full bg-white shadow-md">
+        <div className="absolute p-4 left-0 top-[65px] md:hidden w-full h-[100vh] bg-white shadow-md ">
           <ul className="flex flex-col gap-3 w-full h-fit">
             {navItems.map((item, index) => (
               <li
