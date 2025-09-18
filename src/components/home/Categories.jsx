@@ -37,7 +37,7 @@ const shopCategories = [
 
 const Categories = () => {
   return (
-    <div className="w-full h-100 p-4 md:p-0">
+    <div className="w-full p-4 md:p-0">
       <div className="flex items-center justify-between">
         <h1 className="text-xl md:text-5xl font-bold">Category</h1>
         <button className="text-xl md:text-5xl cursor-pointer hover:opacity-80 text-[#40BFFF] font-bold">
