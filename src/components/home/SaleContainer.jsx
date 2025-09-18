@@ -12,8 +12,7 @@ const SaleContainer = ({title="Flash Sale", buttonText="See More"}) => {
         </h1>
       </div>
 
-      <div className="w-full mt-8 flex flex-nowrap overflow-x-scroll md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
-        <SaleProductCard />
+      <div className="w-full mt-8 flex flex-nowrap overflow-x-scroll md:overflow-hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
         <SaleProductCard />
         <SaleProductCard />
         <SaleProductCard />
