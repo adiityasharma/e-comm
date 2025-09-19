@@ -1,10 +1,10 @@
 import React from "react";
-import iconImg from "../asset/Icon.svg";
+import iconImg from "../../asset/Icon.svg";
 import { Facebook, Twitter } from "lucide-react";
-import visaImg from "../asset/images/visa.jpg"
-import paypalImg from "../asset/images/PayPal.png"
-import westernUnionImg from "../asset/images/western-union.png"
-import masterCardImg from "../asset/images/mastercard.png"
+import visaImg from "../../asset/images/visa.jpg"
+import paypalImg from "../../asset/images/PayPal.png";
+import westernUnionImg from "../../asset/images/western-union.png";
+import masterCardImg from "../../asset/images/mastercard.png";
 
 const footerLinks = [
   {

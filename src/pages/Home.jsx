@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
 import ImageCarousel from '../components/home/ImageCarousel'
 import Categories from '../components/home/Categories'
 import SaleContainer from "../components/home/SaleContainer";
