@@ -9,7 +9,7 @@ const Sidebar = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
-    <div className="relative md:w-[250px] lg:w-[300px] xl:w-[355px] flex-col gap-5">
+    <div className="relative w-full h-full flex-col gap-5 mb-5">
       <div className="w-full bg-[#F6F7F8] py-3 px-6 rounded-md flex items-center justify-between">
         <h1 className="text-[20px] font-[500] ">Filters</h1>
         <button
@@ -30,7 +30,7 @@ const Sidebar = () => {
           isFilterOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="flex w-full flex-col gap-5">
+        <div className="flex w-full h-auto flex-col gap-2">
           <HotDeals />
           <PriceFilter />
           <ColorFilter />

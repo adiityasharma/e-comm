@@ -10,11 +10,11 @@ const brandNames = [
 
 const AllBrand = () => {
   return (
-    <div className="w-full bg-[#F6F7F8] py-5 px-6 rounded-md">
+    <div className="w-full h-full bg-[#F6F7F8] px-6 py-5 rounded-md">
       <h1 className="text-[20px] font-[500] ">Brand</h1>
 
-      <div className="mt-7">
-        <ul className="flex flex-col gap-5">
+      <div className="py-5 w-full h-fit">
+        <ul className="flex flex-col gap-4">
           {brandNames.map((item, index) => (
             <div
               key={index}
