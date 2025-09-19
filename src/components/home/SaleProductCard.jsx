@@ -5,8 +5,8 @@ import showImg from "../../asset/images/shoe.png";
 
 const SaleProductCard = () => {
   return (
-    <div className="w-full md:h-auto md:w-full flex flex-col gap-3 md:gap-5 border-2 p-4 md:p-6 rounded-xl border-[#eaefff] ">
-      <div className="w-40 h-40 rounded-xl overflow-hidden">
+    <div className="w-full md:w-full flex flex-col gap-3 md:gap-5 border-2 p-4 md:p-6 rounded-xl border-[#eaefff] ">
+      <div className="w-40 h-40 md:w-full md:h-60 rounded-xl overflow-hidden">
         <img
           className="w-full h-full object-cover"
           src={showImg}
