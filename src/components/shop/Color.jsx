@@ -5,7 +5,7 @@ const Color = ({ colors }) => {
   const [selected, isSelected] = useState("");
 
   return (
-    <div className="w-full flex gap-2">
+    <div className="w-full flex flex-wrap gap-2 ">
       {colors.map((color) => (
         <div
           onClick={() => isSelected(color)}
@@ -17,7 +17,7 @@ const Color = ({ colors }) => {
         >
           <div
             style={{ backgroundColor: color }}
-            className="w-4 h-4 rounded-full"
+            className=" w-4 h-4 rounded-full"
           ></div>
         </div>
       ))}

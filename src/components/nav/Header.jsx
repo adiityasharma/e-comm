@@ -81,9 +81,9 @@ const Header = () => {
       </div>
       {/* mobile view nav */}
       <div className="md:hidden flex gap-5 items-center">
-        <div className=" items-center justify-between font-[Proxima Nova] ">
+        <Link to={"/cart"} className=" items-center justify-between font-[Proxima Nova] ">
           <ShoppingCart size={20} className=" " />
-        </div>
+        </Link>
 
         <div onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -93,13 +93,15 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="absolute p-4 left-0 top-[65px] md:hidden w-full h-[100vh] bg-white shadow-md ">
           <ul className="flex flex-col gap-3 w-full h-fit">
-            {navItems.map((item, index) => (
-              <li
+            {navItems.map((item) => (
+              <Link
+                to={item.url}
+                onClick={()=>isMobileMenuOpen(false)}
                 className="text-[25px] font-[500] text-[#22262A] "
-                key={index}
+                key={item.id}
               >
-                {item}
-              </li>
+                {item.text}
+              </Link>
             ))}
           </ul>
         </div>
