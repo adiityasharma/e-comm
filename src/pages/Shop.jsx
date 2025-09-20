@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../components/shop/Sidebar'
 import Banner from '../components/shop/Banner'
 import FilterBar from '../components/shop/FilterBar';
+import ProductCard from '../components/shop/ProductCard';
 
 const Shop = () => {
   return (
@@ -11,7 +12,12 @@ const Shop = () => {
       </div>
       <div className="w-full xl:w-[75%] flex flex-col gap-4">
         <Banner />
-        <FilterBar/>
+        <FilterBar />
+        <div className='w-full grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5'>
+          <ProductCard/>
+          <ProductCard/>
+          <ProductCard/>
+        </div>
       </div>
     </div>
   );

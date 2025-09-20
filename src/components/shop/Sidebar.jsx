@@ -9,20 +9,20 @@ const Sidebar = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
-    <div className="relative w-full h-full flex-col gap-5 mb-5">
-      <div className="w-full bg-[#F6F7F8] py-3 px-6 rounded-md flex items-center justify-between">
+    <div className=" w-full h-full flex-col gap-5 mb-5">
+      <div
+        onClick={() => setIsFilterOpen(!isFilterOpen)}
+        className="cursor-pointer w-full bg-[#F6F7F8] py-3 px-6 rounded-md flex items-center justify-between"
+      >
         <h1 className="text-[20px] font-[500] ">Filters</h1>
-        <button
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className=" cursor-pointer w-8 h-8 flex items-center justify-center bg-neutral-200 rounded-full"
-        >
+        <div className=" w-8 h-8 flex items-center justify-center rounded-full">
           <ChevronDown
             size={16}
             className={`transition-transform duration-300 ${
-              isFilterOpen ? "rotate-180" : "rotate-90"
+              isFilterOpen ? "rotate-180" : "rotate-0"
             }`}
           />
-        </button>
+        </div>
       </div>
 
       <div
