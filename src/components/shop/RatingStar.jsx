@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-const RatingStar = ({ starCount = 5 }) => {
-  const [starValue, setStarValue] = useState();
+const RatingStar = ({ starCount = 5 , ratingValue}) => {
+  const [starValue, setStarValue] = useState(ratingValue.toFixed(0));
   const [hoverValue, setHoverValue] = useState(0);
 
   return (
     <div className="flex gap-1 text-2xl ">
       {[...new Array(starCount)].map((_, index) => (
         <span
-          onClick={() => setStarValue(index + 1)}
           key={index}
           onMouseEnter={() => setHoverValue(index + 1)}
           onMouseLeave={() => setHoverValue(0)}

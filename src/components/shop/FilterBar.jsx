@@ -1,37 +1,46 @@
-import React from 'react'
+import React from "react";
 
+import { Grid3x3, Menu } from "lucide-react";
 
-import { Grid3x3, Menu } from 'lucide-react';
+const FilterBar = ({
+  items,
+  productCount,
+  setProductCount,
+  setSortBy,
+  sortBy,
+}) => {
 
-const FilterBar = () => {
 
 
   return (
     <div className="w-full h-15 md:h-12 lg:h-15 flex justify-between px-3 md:px-3 lg:px-5 text-[#22262A] items-center rounded bg-[#F1F3F4]">
-      <div className="w-full md:w-fit flex items-center gap-5 md:gap-4 lg:gap-10 ">
-        <h1 className=" md:text-sm lg:text-[16px]">13 Items</h1>
-        <div className="h-full flex items-center gap-5">
+      <div className="w-full md:w-fit flex items-center gap-3 md:gap-4 lg:gap-10 ">
+        <h1 className=" md:text-sm lg:text-[16px]">{items?.total} Items</h1>
+        <div className="h-full flex items-center gap-1">
           <h1 className="md:text-sm lg:text-[16px]">Sort By</h1>
           <select
-            className="md:w-20 lg:w-25 outline-none md:text-sm lg:text-[16px] "
+            onClick={(e) => setSortBy(e.target.value)}
+            className="w-28 sm:w-fit outline-none md:text-sm lg:text-[16px] "
             name=""
             id=""
           >
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-            <option value="hot">Hot</option>
+            <option value="title-asc">A-Z</option>
+            <option value="title-desc">Z-A</option>
+            <option value="price-asc">Price; Low To High</option>
+            <option value="price-desc">Price: High To Low</option>
+            <option value="rating-asc">Rating: Low To High</option>
+            <option value="rating-desc">Rating: High To Low</option>
           </select>
         </div>
         <div className="h-full flex items-center gap-5 md:text-sm lg:text-[16px]">
           <h1 className="md:text-sm lg:text-[16px]">Show</h1>
           <select
+            onChange={(e) => setProductCount(e.target.value)}
             className="md:w-15 lg:w-25 outline-none md:text-sm lg:text-[16px]"
             name=""
             id=""
           >
-            <option className="" value="6">
-              6
-            </option>
+            <option value="6">6</option>
             <option value="12">12</option>
             <option value="18">18</option>
             <option value="24">24</option>
@@ -49,6 +58,6 @@ const FilterBar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default FilterBar
+export default FilterBar;
