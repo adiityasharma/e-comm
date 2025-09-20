@@ -8,10 +8,9 @@ const FilterBar = ({
   setProductCount,
   setSortBy,
   sortBy,
+  layout,
+  setLayout,
 }) => {
-
-
-
   return (
     <div className="w-full h-15 md:h-12 lg:h-15 flex justify-between px-3 md:px-3 lg:px-5 text-[#22262A] items-center rounded bg-[#F1F3F4]">
       <div className="w-full md:w-fit flex items-center gap-3 md:gap-4 lg:gap-10 ">
@@ -49,10 +48,20 @@ const FilterBar = ({
       </div>
 
       <div className="hidden md:flex">
-        <div className="cursor-pointer opacity-60 w-12 h-12 flex items-center justify-center">
+        <div
+          onClick={() => setLayout("Grid")}
+          className={`cursor-pointer ${
+            layout === "Grid" ? "opacity-100 text-[#40BFFF]" : "opacity-60"
+          } w-12 h-12 flex items-center justify-center`}
+        >
           <Grid3x3 />
         </div>
-        <div className="cursor-pointer opacity-60 w-12 h-12 flex items-center justify-center">
+        <div
+          onClick={() => setLayout("List")}
+          className={`cursor-pointer ${
+            layout === "List" ? "opacity-100 text-[#40BFFF]" : "opacity-60"
+          } w-12 h-12 flex items-center justify-center`}
+        >
           <Menu />
         </div>
       </div>

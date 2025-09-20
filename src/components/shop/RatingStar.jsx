@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const RatingStar = ({ starCount = 5 , ratingValue}) => {
-  const [starValue, setStarValue] = useState(ratingValue.toFixed(0));
+  const [starValue, setStarValue] = useState(Math.floor(ratingValue));
   const [hoverValue, setHoverValue] = useState(0);
 
   return (

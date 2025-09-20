@@ -9,8 +9,9 @@ const initialState = {
 }
 
 export const fetchAllProducts = createAsyncThunk("fetchAllProducts",
-  async (limit) => {
-    const res = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=0`)
+  async ({ productCount, pageNo }) => {
+    const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
+    const res = await axios.get(`https://dummyjson.com/products?limit=${productCount}&skip=${skip}`)
     return res.data;
   }
 )
@@ -31,7 +32,7 @@ export const productSlice = createSlice({
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload.message;
+        state.error = action.payload;
       })
   }
 })
