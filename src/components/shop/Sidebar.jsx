@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import HotDeals from "./HotDeals";
 import PriceFilter from "./PriceFilter";
 import ColorFilter from "./ColorFilter";
 import AllBrand from "./AllBrand";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import AllCategories from "./AllCategories";
 
-const Sidebar = () => {
+const Sidebar = ({priceRange, setPriceRange}) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
@@ -26,15 +26,15 @@ const Sidebar = () => {
       </div>
 
       <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isFilterOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        className={`overflow-hidden transition-all duration-600 ease-in-out ${
+          isFilterOpen ? "h-fit opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="flex w-full h-auto flex-col gap-2">
-          <HotDeals />
-          <PriceFilter />
-          <ColorFilter />
+        <div className="flex w-full h-full flex-col gap-2 mt-2">
+          <AllCategories />
           <AllBrand />
+          <PriceFilter priceRange={priceRange} setPriceRange={setPriceRange} />
+          <ColorFilter />
         </div>
       </div>
     </div>

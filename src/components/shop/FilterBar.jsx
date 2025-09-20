@@ -4,10 +4,8 @@ import { Grid3x3, Menu } from "lucide-react";
 
 const FilterBar = ({
   items,
-  productCount,
   setProductCount,
   setSortBy,
-  sortBy,
   layout,
   setLayout,
 }) => {
@@ -19,7 +17,7 @@ const FilterBar = ({
           <h1 className="md:text-sm lg:text-[16px]">Sort By</h1>
           <select
             onClick={(e) => setSortBy(e.target.value)}
-            className="w-28 sm:w-fit outline-none md:text-sm lg:text-[16px] "
+            className="w-22 sm:w-fit outline-none md:text-sm lg:text-[16px] "
             name=""
             id=""
           >

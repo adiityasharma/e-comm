@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-const PriceFilter = () => {
-  const [rangeVal, setRangeVal] = useState(100);
+const PriceFilter = ({ priceRange, setPriceRange }) => {
 
   const rangerValueHandler = (e) => {
-    setRangeVal(e.target.value);
+    setPriceRange(e.target.value);
   };
 
   return (
@@ -14,16 +13,16 @@ const PriceFilter = () => {
         <div className="flex items-center justify-between mt-5">
           <h1>Ranger:</h1>
           <h1>
-            <span>${rangeVal}</span>
+            <span>${priceRange}</span>
           </h1>
         </div>
         <div className="w-full mt-3">
           <input
             onChange={rangerValueHandler}
             type="range"
-            value={rangeVal}
+            value={priceRange}
             min={1}
-            max={999}
+            max={500}
             className="w-full"
           />
         </div>
