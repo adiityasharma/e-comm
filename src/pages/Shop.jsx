@@ -3,6 +3,7 @@ import Sidebar from '../components/shop/Sidebar'
 import Banner from '../components/shop/Banner'
 import FilterBar from '../components/shop/FilterBar';
 import ProductCard from '../components/shop/ProductCard';
+import Pagination from '../components/shop/Pagination';
 
 const Shop = () => {
   return (
@@ -18,6 +19,7 @@ const Shop = () => {
           <ProductCard/>
           <ProductCard/>
         </div>
+        <Pagination/>
       </div>
     </div>
   );
