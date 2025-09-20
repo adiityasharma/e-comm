@@ -5,7 +5,14 @@ import AllBrand from "./AllBrand";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import AllCategories from "./AllCategories";
 
-const Sidebar = ({priceRange, setPriceRange}) => {
+const Sidebar = ({
+  priceRange,
+  setPriceRange,
+  setSearchCategory,
+  searchCategory,
+  filterByBrand,
+  setFilterByBrand,
+}) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
@@ -31,8 +38,14 @@ const Sidebar = ({priceRange, setPriceRange}) => {
         }`}
       >
         <div className="flex w-full h-full flex-col gap-2 mt-2">
-          <AllCategories />
-          <AllBrand />
+          <AllCategories
+            setSearchCategory={setSearchCategory}
+            searchCategory={searchCategory}
+          />
+          <AllBrand
+            setFilterByBrand={setFilterByBrand}
+            filterByBrand={filterByBrand}
+          />
           <PriceFilter priceRange={priceRange} setPriceRange={setPriceRange} />
           <ColorFilter />
         </div>
@@ -43,7 +56,8 @@ const Sidebar = ({priceRange, setPriceRange}) => {
 
 export default Sidebar;
 
-{/* <div
+{
+  /* <div
   onClick={() => setIsFilterOpen(!isFilterOpen)}
   className="w-full bg-[#F6F7F8] py-5 px-6 rounded-md mt-5"
 >
@@ -51,4 +65,5 @@ export default Sidebar;
     <h1>Filter</h1>
     {isFilterOpen ? <ChevronUp /> : <ChevronDown />}
   </div>
-</div> */}
+</div> */
+}

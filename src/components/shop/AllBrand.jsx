@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBrands } from "../../features/productSlice";
 import { ChevronDown } from "lucide-react";
 
-const AllBrand = () => {
+const AllBrand = ({ filterByBrand, setFilterByBrand }) => {
   const { brands } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
 
-  const [brandName, setBrandName] = useState([])
+  const [brandName, setBrandName] = useState([]);
   const [isBrandFilterOpen, setIsBrandFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -44,8 +44,11 @@ const AllBrand = () => {
           <ul className="flex flex-col gap-2 xl:gap-5">
             {brandName.map((item, index) => (
               <div
+                onClick={() => setFilterByBrand(item)}
                 key={index}
-                className="flex justify-between gap-1 text-[14px] xl:text-[18px] text-[#262626]"
+                className={` ${
+                  filterByBrand === item ? "text-[#40BFFF]" : "text-[#262626]"
+                } flex justify-between gap-1 text-[14px] xl:text-[18px] cursor-pointer`}
               >
                 <li className="">{item}</li>
                 <span className="opacity-35 ">99</span>

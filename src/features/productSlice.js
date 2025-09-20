@@ -24,9 +24,18 @@ export const getAllCategories = createAsyncThunk("getAllCategories",
     return res.data;
   }
 )
+
 export const getAllBrands = createAsyncThunk("getAllBrands",
   async () => {
     const res = await axios.get(`https://dummyjson.com/products?limit=100&select=id,brand`)
+    return res.data;
+  }
+)
+
+export const fetchProductByCategory = createAsyncThunk("fetchProductByCategory",
+  async ({ searchCategory, productCount, pageNo }) => {
+    const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
+    const res = await axios.get(`https://dummyjson.com/products/category/${searchCategory}?limit=${productCount}&skip=${skip}`)
     return res.data;
   }
 )
@@ -70,6 +79,18 @@ export const productSlice = createSlice({
         state.brands = action.payload
       })
       .addCase(getAllBrands.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchProductByCategory.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null
+      })
+      .addCase(fetchProductByCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload
+      })
+      .addCase(fetchProductByCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

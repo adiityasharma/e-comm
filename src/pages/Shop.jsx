@@ -5,7 +5,12 @@ import FilterBar from "../components/shop/FilterBar";
 import ProductCard from "../components/shop/ProductCard";
 import Pagination from "../components/shop/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts, getAllCategories } from "../features/productSlice";
+import {
+  fetchAllProducts,
+  fetchProductByCategory,
+  getAllCategories,
+} from "../features/productSlice";
+import Loader from "../components/shop/Loader";
 
 const Shop = () => {
   const { error, isLoading, items } = useSelector((state) => state.allProducts);
@@ -15,8 +20,10 @@ const Shop = () => {
   const [sortedProducts, setSortedProducts] = useState([]);
   const [layout, setLayout] = useState("Grid");
   const [pageNo, setPageNo] = useState(1);
-
   const [priceRange, setPriceRange] = useState(100);
+  const [searchCategory, setSearchCategory] = useState("");
+
+  const [filterByBrand, setFilterByBrand] = useState("");
 
   useEffect(() => {
     if (items?.products?.length > 0) {
@@ -67,13 +74,26 @@ const Shop = () => {
   }, [priceRange]);
 
   useEffect(() => {
-    dispatch(fetchAllProducts({ productCount, pageNo }));
-  }, [productCount, pageNo]);
+    if (searchCategory != "") {
+      dispatch(
+        fetchProductByCategory({ searchCategory, productCount, pageNo })
+      );
+    } else {
+      dispatch(fetchAllProducts({ productCount, pageNo }));
+    }
+  }, [productCount, pageNo, searchCategory]);
 
   return (
     <div className="w-full h-full flex flex-col md:flex-row gap-3 xl:gap-5 sm:mt-5 p-4 md:p-0 ">
       <div className="w-full h-full md:w-[250px] lg:w-[300px] xl:w-[25%]">
-        <Sidebar priceRange={priceRange} setPriceRange={setPriceRange} />
+        <Sidebar
+          setFilterByBrand={setFilterByBrand}
+          filterByBrand={filterByBrand}
+          searchCategory={searchCategory}
+          setSearchCategory={setSearchCategory}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+        />
       </div>
       <div className="w-full xl:w-[75%] flex flex-col gap-4">
         <Banner />
@@ -86,23 +106,29 @@ const Shop = () => {
           productCount={productCount}
           items={items}
         />
-        <div
-          className={` ${
-            layout === "Grid"
-              ? "grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5"
-              : "grid-cols-1 gap-5"
-          } w-full grid `}
-        >
-          {sortedProducts?.length > 0 &&
-            sortedProducts.map((product) => (
-              <ProductCard layout={layout} key={product.id} product={product} />
-            ))}
-        </div>
-        <Pagination
-          totalProducts={Math.floor(items?.total / productCount)}
-          setPageNo={setPageNo}
-          pageNo={pageNo}
-        />
+        {isLoading ? (
+          <div className="w-full py-10 flex items-center justify-center text-2xl">
+            <Loader/>
+          </div>
+        ) : (
+          <div
+            className={` ${
+              layout === "Grid"
+                ? "grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5"
+                : "grid-cols-1 gap-5"
+            } w-full grid `}
+          >
+            {sortedProducts?.length > 0 &&
+              sortedProducts.map((product) => (
+                <ProductCard
+                  layout={layout}
+                  key={product.id}
+                  product={product}
+                />
+              ))}
+          </div>
+        )}
+        <Pagination setPageNo={setPageNo} pageNo={pageNo} />
       </div>
     </div>
   );

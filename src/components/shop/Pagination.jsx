@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pagination = ({ pageNo, setPageNo, totalProducts }) => {
+const Pagination = ({ pageNo, setPageNo }) => {
   const prevPageNoArr = Array.from(
     { length: 2 },
     (_, index) => pageNo - 1 - index
