@@ -6,12 +6,14 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import AllCategories from "./AllCategories";
 
 const Sidebar = ({
+  totalProducts,
   priceRange,
   setPriceRange,
   setSearchCategory,
   searchCategory,
   filterByBrand,
   setFilterByBrand,
+  totalSortedProducts,
 }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -39,10 +41,12 @@ const Sidebar = ({
       >
         <div className="flex w-full h-full flex-col gap-2 mt-2 ">
           <AllCategories
+            totalProducts={totalProducts}
             setSearchCategory={setSearchCategory}
             searchCategory={searchCategory}
           />
           <AllBrand
+            totalSortedProducts={totalSortedProducts}
             setFilterByBrand={setFilterByBrand}
             filterByBrand={filterByBrand}
           />

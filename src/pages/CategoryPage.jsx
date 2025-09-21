@@ -22,13 +22,12 @@ const CategoryPage = () => {
   const [searchCategory, setSearchCategory] = useState("");
   const [filterByBrand, setFilterByBrand] = useState("");
 
-
   useEffect(() => {
     if (items?.products?.length > 0) {
       const filteredArr = items.products.filter(
         (item) => item.brand === filterByBrand
       );
-      console.log(filteredArr)
+      console.log(filteredArr);
       setSortedProducts(filteredArr);
     }
   }, [filterByBrand]);
@@ -97,6 +96,8 @@ const CategoryPage = () => {
     <div className="w-full h-full flex flex-col md:flex-row gap-2 md:gap-3 xl:gap-5 sm:mt-5 p-4 md:p-0 ">
       <div className="w-full h-full md:w-[250px] lg:w-[300px] xl:w-[25%]">
         <Sidebar
+          totalSortedProducts={sortedProducts?.length}
+          totalProducts={items?.total}
           setFilterByBrand={setFilterByBrand}
           filterByBrand={filterByBrand}
           searchCategory={searchCategory}
@@ -117,7 +118,7 @@ const CategoryPage = () => {
           <div className="w-full py-10 flex items-center justify-center text-2xl">
             <Loader />
           </div>
-        ) : (
+        ) : sortedProducts.length > 0 ? (
           <div
             className={` ${
               layout === "Grid"
@@ -133,6 +134,12 @@ const CategoryPage = () => {
                   product={product}
                 />
               ))}
+          </div>
+        ) : (
+          <div className="w-full py-5 text-2xl font-[700]">
+            <h1 className="text-center text-[#5e5e5e]">
+              No Products Available
+            </h1>
           </div>
         )}
         <Pagination setPageNo={setPageNo} pageNo={pageNo} />

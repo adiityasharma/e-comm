@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBrands } from "../../features/productSlice";
 import { ChevronDown } from "lucide-react";
 
-const AllBrand = ({ filterByBrand, setFilterByBrand }) => {
+const AllBrand = ({ filterByBrand, setFilterByBrand, totalSortedProducts }) => {
   const { brands } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
 
@@ -51,7 +51,13 @@ const AllBrand = ({ filterByBrand, setFilterByBrand }) => {
                 } flex justify-between gap-1 text-[14px] xl:text-[18px] cursor-pointer`}
               >
                 <li className="">{item}</li>
-                <span className="opacity-35 ">99</span>
+                <span
+                  className={`${
+                    filterByBrand === item ? "block" : "hidden"
+                  }`}
+                >
+                  {totalSortedProducts}
+                </span>
               </div>
             ))}
           </ul>

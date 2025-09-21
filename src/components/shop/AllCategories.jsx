@@ -5,11 +5,14 @@ import {
 } from "../../features/productSlice";
 import { ChevronDown } from "lucide-react";
 
-const AllCategories = ({ searchCategory, setSearchCategory }) => {
+const AllCategories = ({
+  searchCategory,
+  setSearchCategory,
+  totalProducts,
+}) => {
   const { categories } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
   const [isCategory, setIsCategory] = useState(false);
-  
 
   useEffect(() => {
     dispatch(getAllCategories());
@@ -46,7 +49,9 @@ const AllCategories = ({ searchCategory, setSearchCategory }) => {
                 } flex justify-between gap-1 text-[14px] xl:text-[18px] cursor-pointer`}
               >
                 <li className="">{item.name}</li>
-                <span className="opacity-35 ">99</span>
+                <span className={`${searchCategory === item.slug ? "block" : "hidden"}`}>
+                  {totalProducts}
+                </span>
               </div>
             ))}
           </ul>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProductById } from "../features/productSlice";
 import { findDiscountedPrice } from "../components/shop/ProductCard";
 import Loader from "../components/shop/Loader";
+import { Handbag } from "lucide-react";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -16,6 +17,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [productImages, setProductImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState();
+  const [hoveredImage, setHoveredImage] = useState(null);
 
   useEffect(() => {
     dispatch(getSingleProductById(id));
@@ -37,14 +39,22 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="w-full p-4 md:p-0 flex flex-col md:flex-row items-start justify-between gap-8 md:mt-5">
+    <div className="w-full md:min-h-screen p-4 md:p-0 flex flex-col md:flex-row items-start justify-between gap-8 md:mt-5">
       <div className="md:w-160 flex flex-col-reverse lg:flex-row md:flex-col-reverse lg:justify-between gap-2">
         <div className="w-full lg:w-30 h-fit lg:px-4 flex flex-row lg:flex-col gap-2 ">
           {productImages?.map((item, index) => (
             <div
+              onMouseEnter={() => setHoveredImage(item)}
+              onMouseLeave={() => setHoveredImage(null)}
               key={index}
               onClick={() => setSelectedImage(item)}
-              className=" cursor-pointer w-full h-25 border border-[#d4d4d4] rounded-xl overflow-hidden p-2"
+              className={`cursor-pointer w-full h-25 border-2 ${
+                hoveredImage != null && hoveredImage == item
+                  ? "border-[#858585]"
+                  : hoveredImage === null && selectedImage == item
+                  ? "border-[#40BFFF]"
+                  : "border-[#d4d4d4]"
+              } rounded-xl overflow-hidden p-2`}
             >
               <img
                 className="w-full h-full object-cover"
@@ -59,7 +69,7 @@ const ProductDetails = () => {
           <div className="w-full h-fit overflow-hidden">
             <img
               className="w-full h-fit object-cover"
-              src={selectedImage}
+              src={hoveredImage != null ? hoveredImage : selectedImage}
               alt={product?.title}
             />
           </div>
@@ -89,20 +99,29 @@ const ProductDetails = () => {
           <p className="text-[13px] md:text-normal">({product?.rating}/5)</p>
         </div>
 
-        <div className="flex items-center text-[13px] md:text-[17px] gap-1 md:gap-3 mt-3">
+        <div className="flex items-center text-[13px] lg:text-[17px] gap-1 lg:gap-3 mt-3">
           <h1 className="font-[500]">Dimensions:</h1>
           <p>Width-{product?.dimensions?.width}</p>|
           <p>Height-{product?.dimensions?.height}</p>|
           <p>Depth-{product?.dimensions?.depth}</p>
         </div>
 
-        <div className="flex items-center text-[10px] md:text-[17px] gap-1 md:gap-3 mt-3">
+        <div className="flex items-center text-[10px] md:text-[14px] lg::text-[17px] gap-1 md:gap-2 lg:gap-3 mt-3">
           <p>{product?.warrantyInformation}</p>|
           <p>{product?.shippingInformation}</p>|<p>{product?.returnPolicy}</p>
         </div>
 
+        <button className="mt-4 rounded bg-[#40BFFF] text-white font-[600] w-fit py-3 px-10 flex items-center gap-5 cursor-pointer">
+          <Handbag />
+          <p className="uppercase">Add To Bag</p>
+        </button>
+
+        <div className="mt-5 text-[11px] md:text-[14px]">
+          <p>{product?.description}</p>
+        </div>
+
         {product?.reviews?.length > 0 && (
-          <div className="mt-3">
+          <div className="mt-4">
             <h1 className="font-[500] md:text-[20px] text-[16px] ">
               Hear what our customers say ({product?.reviews?.length})
             </h1>
@@ -125,10 +144,6 @@ const ProductDetails = () => {
             </div>
           </div>
         )}
-
-        <div className="mt-5 text-[11px] md:text-[13px]">
-          <p>{product?.description}</p>
-        </div>
       </div>
     </div>
   );

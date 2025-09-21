@@ -22,7 +22,7 @@ const PriceFilter = ({ priceRange, setPriceRange }) => {
             type="range"
             value={priceRange}
             min={1}
-            max={500}
+            max={5000}
             className="w-full"
           />
         </div>
