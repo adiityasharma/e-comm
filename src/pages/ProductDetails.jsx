@@ -6,6 +6,7 @@ import { getSingleProductById } from "../features/productSlice";
 import { findDiscountedPrice } from "../components/shop/ProductCard";
 import Loader from "../components/shop/Loader";
 import { Handbag } from "lucide-react";
+import { addToCart } from "../features/cartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -29,6 +30,22 @@ const ProductDetails = () => {
       setSelectedImage(product.images[0]);
     }
   }, [product]);
+
+  const addToCartHandler = () => {
+    const data = {
+      id: product.id,
+      title: product?.title,
+      brand: product?.brand,
+      shippingInformation: product?.shippingInformation,
+      price: product.price,
+      discountedPrice: findDiscountedPrice(
+        product?.price,
+        product?.discountPercentage
+      ),
+      image: product.thumbnail,
+    };
+    dispatch(addToCart(data));
+  };
 
   if (isLoading) {
     return (
@@ -111,7 +128,10 @@ const ProductDetails = () => {
           <p>{product?.shippingInformation}</p>|<p>{product?.returnPolicy}</p>
         </div>
 
-        <button className="mt-4 rounded bg-[#40BFFF] text-white font-[600] w-fit py-3 px-10 flex items-center gap-5 cursor-pointer">
+        <button
+          onClick={addToCartHandler}
+          className="mt-4 rounded bg-[#40BFFF] text-white font-[600] w-fit py-3 px-10 flex items-center gap-5 cursor-pointer active:scale-95 hover:bg-[#55c6fe]"
+        >
           <Handbag />
           <p className="uppercase">Add To Bag</p>
         </button>

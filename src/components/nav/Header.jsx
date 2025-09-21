@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logoIcon from "../../asset/Icon.svg";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const navItems = [
   {
@@ -33,6 +34,19 @@ const navItems = [
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { items } = useSelector((state) => state.cart);
+  const [subtotal, setSubtotal] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!items || items.length === 0) return;
+
+    const totalPrice = items?.reduce((acc, curr) => {
+      return acc + parseInt(curr.discountedPrice) * parseInt(curr.quantity);
+    }, 0);
+
+    setSubtotal(totalPrice);
+  }, [items]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -71,18 +85,29 @@ const Header = () => {
         </ul>
       </div>
       <div className="hidden md:flex gap-2  lg:w-[170px] h-[40px] items-center justify-between font-[Proxima Nova] ">
-        <Link to={"/cart"}>
+        <Link to={"/cart"} className="relative">
           <ShoppingCart size={20} className="hover:text-blue-400" />
+          <div className="absolute -top-2 -right-3 bg-blue-400 rounded-full w-5 h-5 flex items-center justify-center">
+            <p className="text-[12px] font-[600] text-white">{items.length}</p>
+          </div>
         </Link>
         <div className=" flex items-center gap-2 text-[20px] ">
           <h1 className="md:text-[16px] lg:text-[20px]">Items</h1>
-          <p className="text-[#262626] text-[15px] lg:text-normal opacity-50">$0.00</p>
+          <p className="text-[#262626] text-[15px] lg:text-normal">
+            ${subtotal}
+          </p>
         </div>
       </div>
       {/* mobile view nav */}
       <div className="md:hidden flex gap-5 items-center">
-        <Link to={"/cart"} className=" items-center justify-between font-[Proxima Nova] ">
+        <Link
+          to={"/cart"}
+          className="relative items-center justify-between font-[Proxima Nova] "
+        >
           <ShoppingCart size={20} className=" " />
+          <div className="absolute -top-2 -right-3 bg-blue-400 rounded-full w-5 h-5 flex items-center justify-center">
+            <p className="text-[12px] font-[600] text-white">{items.length}</p>
+          </div>
         </Link>
 
         <div onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -96,7 +121,7 @@ const Header = () => {
             {navItems.map((item) => (
               <Link
                 to={item.url}
-                onClick={()=>isMobileMenuOpen(false)}
+                onClick={() => isMobileMenuOpen(false)}
                 className="text-[25px] font-[500] text-[#22262A] "
                 key={item.id}
               >

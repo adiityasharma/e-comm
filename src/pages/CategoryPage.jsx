@@ -27,7 +27,6 @@ const CategoryPage = () => {
       const filteredArr = items.products.filter(
         (item) => item.brand === filterByBrand
       );
-      console.log(filteredArr);
       setSortedProducts(filteredArr);
     }
   }, [filterByBrand]);

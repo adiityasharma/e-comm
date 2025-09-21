@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </main>

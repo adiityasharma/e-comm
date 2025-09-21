@@ -1,16 +1,19 @@
 import React from "react";
 
 import { findDiscountedPrice } from "../shop/ProductCard";
+import { Link } from "react-router-dom";
 
 const SaleProductCard = ({ data }) => {
   return (
     <div className="w-full md:w-full flex flex-col gap-3 md:gap-5 border-2 p-4 md:p-6 rounded-xl border-[#eaefff] ">
       <div className="relative w-50 h-50 md:w-full md:h-60 overflow-hidden">
-        <img
-          className="w-full h-full object-cover"
-          src={data?.thumbnail}
-          alt="product img"
-        />
+        <Link to={`/products/${data?.id}`}>
+          <img
+            className="w-full h-full object-cover"
+            src={data?.thumbnail}
+            alt="product img"
+          />
+        </Link>
         <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[12px] lg:text-[20px] px-2 md:px-3 py-1 rounded">
           Hot
         </div>
