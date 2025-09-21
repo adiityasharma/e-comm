@@ -7,7 +7,8 @@ const initialState = {
   error: null,
   items: [],
   categories: [],
-  brands: []
+  brands: [],
+  singleProductDetails: {}
 }
 // for all products
 export const fetchAllProducts = createAsyncThunk("fetchAllProducts",
@@ -44,6 +45,13 @@ export const fetchProductByCategoryParam = createAsyncThunk("fetchProductByCateg
   async ({ category, searchCategory, productCount = 6, pageNo = 1 }) => {
     const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
     const res = await axios.get(`https://dummyjson.com/products/category/${category != undefined ? category : searchCategory}?limit=${productCount}&skip=${skip}`)
+    return res.data;
+  }
+)
+
+export const getSingleProductById = createAsyncThunk("getSingleProductById",
+  async (id) => {
+    const res = await axios.get(`https://dummyjson.com/products/${id}`)
     return res.data;
   }
 )
@@ -111,6 +119,18 @@ export const productSlice = createSlice({
         state.items = action.payload
       })
       .addCase(fetchProductByCategoryParam.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(getSingleProductById.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null
+      })
+      .addCase(getSingleProductById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.singleProductDetails = action.payload
+      })
+      .addCase(getSingleProductById.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
