@@ -4,7 +4,7 @@ import shoeImg from "../../asset/images/shoe3.png";
 import RatingStar from "./RatingStar";
 
 export const findDiscountedPrice = (originalPrice, discountPercent) => {
-  const price = (originalPrice * (1 - discountPercent / 100)).toFixed(2);
+  const price = (parseInt(originalPrice) * (1 - parseInt(discountPercent) / 100)).toFixed(2);
   return price;
 };
 
@@ -20,13 +20,14 @@ const ProductCard = ({ product, layout }) => {
           layout === "Grid"
             ? "w-full h-40 md:h-60 xl:h-75 "
             : "md:w-90 bg-amber-200 lg:w-110 xl:w-120 h-full"
-        } overflow-hidden`}
+        } relative overflow-hidden`}
       >
         <img
           className="w-full h-full object-cover bg-neutral-100"
           src={product?.thumbnail}
           alt="shoe image"
         />
+        <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[18px] lg:text-[20px] px-3 py-1 rounded">Hot</div>
       </div>
       <div
         className={` ${

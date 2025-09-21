@@ -16,18 +16,18 @@ const navItems = [
   },
   {
     id: 3,
-    text: "Bag",
-    url: "/category/bag",
+    text: "Men's Shoes",
+    url: "/category/mens-shoes",
   },
   {
     id: 4,
-    text: "Sneakers",
-    url: "/category/sneakers",
+    text: "Watches",
+    url: "/category/mens-watches",
   },
   {
     id: 5,
-    text: "Contact",
-    url: "/contact",
+    text: "Women's dresses",
+    url: "/category/womens-dresses",
   },
 ];
 
@@ -57,12 +57,12 @@ const Header = () => {
           E-Comm
         </Link>
       </div>
-      <div className="hidden md:block md:w-[400px] lg:w-[600px] xl:w-[804px] h-[40px] ">
-        <ul className="flex items-center justify-between w-full h-full">
+      <div className="hidden md:block  lg:w-[600px] xl:w-[804px] h-[40px] ">
+        <ul className="flex items-center gap-3 justify-between w-full h-full">
           {navItems.map((item) => (
             <Link
               to={item.url}
-              className="md:text-[16px] lg:text-[18px] xl:text-[20px] font-[500] text-[#22262A] "
+              className="md:text-[15px] lg:text-[18px] xl:text-[20px] font-[500] text-[#22262A] "
               key={item.id}
             >
               {item.text.toUpperCase()}
@@ -70,13 +70,13 @@ const Header = () => {
           ))}
         </ul>
       </div>
-      <div className="hidden md:flex md:w-[140px] lg:w-[170px] h-[40px] items-center justify-between font-[Proxima Nova] ">
+      <div className="hidden md:flex gap-2  lg:w-[170px] h-[40px] items-center justify-between font-[Proxima Nova] ">
         <Link to={"/cart"}>
           <ShoppingCart size={20} className="hover:text-blue-400" />
         </Link>
         <div className=" flex items-center gap-2 text-[20px] ">
           <h1 className="md:text-[16px] lg:text-[20px]">Items</h1>
-          <p className="text-[#262626] opacity-50">$0.00</p>
+          <p className="text-[#262626] text-[15px] lg:text-normal opacity-50">$0.00</p>
         </div>
       </div>
       {/* mobile view nav */}

@@ -37,7 +37,7 @@ const Sidebar = ({
           isFilterOpen ? "h-fit opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="flex w-full h-full flex-col gap-2 mt-2">
+        <div className="flex w-full h-full flex-col gap-2 mt-2 ">
           <AllCategories
             setSearchCategory={setSearchCategory}
             searchCategory={searchCategory}

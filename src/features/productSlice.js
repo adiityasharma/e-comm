@@ -9,7 +9,7 @@ const initialState = {
   categories: [],
   brands: []
 }
-
+// for all products
 export const fetchAllProducts = createAsyncThunk("fetchAllProducts",
   async ({ productCount, pageNo }) => {
     const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
@@ -17,25 +17,33 @@ export const fetchAllProducts = createAsyncThunk("fetchAllProducts",
     return res.data;
   }
 )
-
+// all categories
 export const getAllCategories = createAsyncThunk("getAllCategories",
   async () => {
     const res = await axios.get(`https://dummyjson.com/products/categories`)
     return res.data;
   }
 )
-
+// for brands
 export const getAllBrands = createAsyncThunk("getAllBrands",
   async () => {
     const res = await axios.get(`https://dummyjson.com/products?limit=100&select=id,brand`)
     return res.data;
   }
 )
-
+// products by category
 export const fetchProductByCategory = createAsyncThunk("fetchProductByCategory",
-  async ({ searchCategory, productCount, pageNo }) => {
+  async ({ searchCategory, productCount = 6, pageNo = 1 }) => {
     const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
     const res = await axios.get(`https://dummyjson.com/products/category/${searchCategory}?limit=${productCount}&skip=${skip}`)
+    return res.data;
+  }
+)
+
+export const fetchProductByCategoryParam = createAsyncThunk("fetchProductByCategoryParam",
+  async ({ category, searchCategory, productCount = 6, pageNo = 1 }) => {
+    const skip = parseInt(productCount) * (parseInt(pageNo) - 1)
+    const res = await axios.get(`https://dummyjson.com/products/category/${category != undefined ? category : searchCategory}?limit=${productCount}&skip=${skip}`)
     return res.data;
   }
 )
@@ -91,6 +99,18 @@ export const productSlice = createSlice({
         state.items = action.payload
       })
       .addCase(fetchProductByCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchProductByCategoryParam.pending, (state, action) => {
+        state.isLoading = true;
+        state.error = null
+      })
+      .addCase(fetchProductByCategoryParam.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload
+      })
+      .addCase(fetchProductByCategoryParam.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

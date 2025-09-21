@@ -33,7 +33,7 @@ const AllCategories = ({ searchCategory, setSearchCategory }) => {
       </div>
 
       {isCategory && (
-        <div className="mt-7">
+        <div className="mt-7 ">
           <ul className="flex flex-col gap-2 xl:gap-5">
             {categories?.map((item, index) => (
               <div

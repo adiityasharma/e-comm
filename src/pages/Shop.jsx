@@ -80,6 +80,7 @@ const Shop = () => {
       );
     } else {
       dispatch(fetchAllProducts({ productCount, pageNo }));
+      setSearchCategory("")
     }
   }, [productCount, pageNo, searchCategory]);
 
@@ -108,7 +109,7 @@ const Shop = () => {
         />
         {isLoading ? (
           <div className="w-full py-10 flex items-center justify-center text-2xl">
-            <Loader/>
+            <Loader />
           </div>
         ) : (
           <div

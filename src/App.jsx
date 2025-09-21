@@ -4,6 +4,7 @@ import Header from "./components/nav/Header";
 import Footer from "./components/footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
+import CategoryPage from "./pages/CategoryPage";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/category/:category" element={<CategoryPage />} />
       </Routes>
       <Footer />
     </main>
