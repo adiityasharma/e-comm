@@ -11,7 +11,7 @@ import ProductCard from "../components/shop/ProductCard";
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { isLoading, error, items } = useSelector((state) => state.allProducts);
   const [layout, setLayout] = useState("Grid");
   const [sortedProducts, setSortedProducts] = useState([]);
@@ -20,6 +20,18 @@ const CategoryPage = () => {
   const [pageNo, setPageNo] = useState(1);
   const [priceRange, setPriceRange] = useState(100);
   const [searchCategory, setSearchCategory] = useState("");
+  const [filterByBrand, setFilterByBrand] = useState("");
+
+
+  useEffect(() => {
+    if (items?.products?.length > 0) {
+      const filteredArr = items.products.filter(
+        (item) => item.brand === filterByBrand
+      );
+      console.log(filteredArr)
+      setSortedProducts(filteredArr);
+    }
+  }, [filterByBrand]);
 
   useEffect(() => {
     if (items?.products?.length > 0) {
@@ -71,22 +83,22 @@ const CategoryPage = () => {
 
   useEffect(() => {
     dispatch(fetchProductByCategoryParam({ category, productCount, pageNo }));
-    setSearchCategory(category)
+    setSearchCategory(category);
   }, [category, productCount, pageNo]);
 
   useEffect(() => {
     if (searchCategory != "") {
-      navigate(`/category/${searchCategory}`)
+      navigate(`/category/${searchCategory}`);
+      setPageNo(1);
     }
   }, [searchCategory]);
-  
 
   return (
-    <div className="w-full h-full flex flex-col md:flex-row md:gap-3 xl:gap-5 sm:mt-5 p-4 md:p-0 ">
+    <div className="w-full h-full flex flex-col md:flex-row gap-2 md:gap-3 xl:gap-5 sm:mt-5 p-4 md:p-0 ">
       <div className="w-full h-full md:w-[250px] lg:w-[300px] xl:w-[25%]">
         <Sidebar
-          // setFilterByBrand={setFilterByBrand}
-          // filterByBrand={filterByBrand}
+          setFilterByBrand={setFilterByBrand}
+          filterByBrand={filterByBrand}
           searchCategory={searchCategory}
           setSearchCategory={setSearchCategory}
           priceRange={priceRange}

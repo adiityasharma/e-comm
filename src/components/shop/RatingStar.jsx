@@ -5,7 +5,7 @@ const RatingStar = ({ starCount = 5 , ratingValue}) => {
   const [hoverValue, setHoverValue] = useState(0);
 
   return (
-    <div className="flex gap-1 text-2xl ">
+    <div className="flex ms:gap-1 text-[15px] md:text-2xl ">
       {[...new Array(starCount)].map((_, index) => (
         <span
           key={index}

@@ -2,9 +2,13 @@ import React from "react";
 
 import shoeImg from "../../asset/images/shoe3.png";
 import RatingStar from "./RatingStar";
+import { Link } from "react-router-dom";
 
 export const findDiscountedPrice = (originalPrice, discountPercent) => {
-  const price = (parseInt(originalPrice) * (1 - parseInt(discountPercent) / 100)).toFixed(2);
+  const price = (
+    parseInt(originalPrice) *
+    (1 - parseInt(discountPercent) / 100)
+  ).toFixed(2);
   return price;
 };
 
@@ -18,35 +22,40 @@ const ProductCard = ({ product, layout }) => {
       <div
         className={`${
           layout === "Grid"
-            ? "w-full h-40 md:h-60 xl:h-75 "
+            ? "w-full h-50 md:h-60 xl:h-75 "
             : "md:w-90 bg-amber-200 lg:w-110 xl:w-120 h-full"
         } relative overflow-hidden`}
       >
-        <img
-          className="w-full h-full object-cover bg-neutral-100"
-          src={product?.thumbnail}
-          alt="shoe image"
-        />
-        <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[18px] lg:text-[20px] px-3 py-1 rounded">Hot</div>
+        <Link to={`/products/${product?.id}`}>
+          <img
+            className="w-full h-full object-cover bg-neutral-100"
+            src={product?.thumbnail}
+            alt="shoe image"
+          />
+        </Link>
+        <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[12px] sm:text-[18px] lg:text-[20px] px-3 py-1 md:rounded">
+          Hot
+        </div>
       </div>
       <div
         className={` ${
           layout === "Grid"
             ? "flex flex-col md:items-center md:gap-2 justify-center"
             : "flex flex-col gap-1 xl:gap-2"
-        } w-full px-4 py-5 `}
+        } w-full px-2 py-3 sm:px-4 sm:py-5 `}
       >
         <h1
           className={` ${
             layout === "Grid"
-              ? "md:text-center text-[18px] xl:text-[20px] truncate w-full"
+              ? "md:text-center text-[15px] md:text-[18px] xl:text-[20px] sm:truncate w-full"
               : "text-2xl"
           } font-[700] `}
         >
           {product?.title}
         </h1>
-        <div className="flex items-center gap-2">
-          <RatingStar ratingValue={product?.rating} /> ({product?.rating}/5)
+        <div className="flex items-center gap-2 mt-1 md:mt-0">
+          <RatingStar ratingValue={product?.rating} />{" "}
+          <p className="text-[13px] md:text-normal">({product?.rating}/5)</p>
         </div>
         <div
           className={` ${

@@ -11,29 +11,31 @@ const FilterBar = ({
 }) => {
   return (
     <div className="w-full h-15 md:h-12 lg:h-15 flex justify-between px-3 md:px-3 lg:px-5 text-[#22262A] items-center rounded bg-[#F1F3F4]">
-      <div className="w-full md:w-fit flex items-center gap-3 md:gap-4 lg:gap-10 ">
-        <h1 className=" md:text-sm lg:text-[16px]">{items?.total} Items</h1>
+      <div className="w-full md:w-fit flex items-center justify-between gap-3 md:gap-4 lg:gap-10 ">
+        <h1 className="text-[14px] font-[400] md:text-sm lg:text-[16px]">
+          {items?.total} Items
+        </h1>
         <div className="h-full flex items-center gap-1">
-          <h1 className="md:text-sm lg:text-[16px]">Sort By</h1>
+          <h1 className="text-[14px] md:text-sm lg:text-[16px]">Sort By</h1>
           <select
             onClick={(e) => setSortBy(e.target.value)}
-            className="w-22 sm:w-fit outline-none md:text-sm lg:text-[16px] "
+            className="w-22 sm:w-fit outline-none text-[14px] md:text-sm lg:text-[16px] "
             name=""
             id=""
           >
             <option value="title-asc">A-Z</option>
             <option value="title-desc">Z-A</option>
-            <option value="price-asc">Price; Low To High</option>
+            <option value="price-asc">Price: Low To High</option>
             <option value="price-desc">Price: High To Low</option>
             <option value="rating-asc">Rating: Low To High</option>
             <option value="rating-desc">Rating: High To Low</option>
           </select>
         </div>
         <div className="h-full flex items-center gap-5 md:text-sm lg:text-[16px]">
-          <h1 className="md:text-sm lg:text-[16px]">Show</h1>
+          <h1 className="text-[14px] md:text-sm lg:text-[16px]">Show</h1>
           <select
             onChange={(e) => setProductCount(e.target.value)}
-            className="md:w-15 lg:w-25 outline-none md:text-sm lg:text-[16px]"
+            className="md:w-15 lg:w-25 outline-none text-[14px] md:text-sm lg:text-[16px]"
             name=""
             id=""
           >

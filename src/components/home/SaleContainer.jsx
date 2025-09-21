@@ -3,15 +3,18 @@ import React from "react";
 import SaleProductCard from "./SaleProductCard";
 import { Link } from "react-router-dom";
 
-const SaleContainer = ({ title = "Flash Sale", buttonText = "See More", data }) => {
-
+const SaleContainer = ({
+  title = "Flash Sale",
+  buttonText = "See More",
+  data,
+}) => {
   return (
     <div className="w-full mt-5 md:mt-15 p-4 md:p-0">
-      <div className="w-full flex items-center justify-between text-xl md:text-5xl font-bold">
+      <div className="w-full flex items-center justify-between text-lg md:text-5xl font-bold">
         <h1>{title}</h1>
         <Link
           to={"/shop"}
-          className="text-xl md:text-5xl cursor-pointer hover:opacity-80 text-[#40BFFF]"
+          className="text-lg md:text-5xl cursor-pointer hover:opacity-80 text-[#40BFFF]"
         >
           {buttonText}
         </Link>

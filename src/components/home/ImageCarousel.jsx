@@ -9,9 +9,29 @@ const ImageCarousel = ({duration}) => {
   const imageArr = [bannerImage1, bannerImage2, bannerImage3];
   let [index, setIndex] = useState(0);
 
-  const [time, setTime] = useState(duration)
+  let [time, setTime] = useState(duration)
 
-  console.log(object)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(prevTime => prevTime - 1000)
+    }, 1000);
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [duration])
+  
+  const getFormatedTime = (milliseconds) => {
+    const totalSeconds = parseInt(Math.floor(milliseconds / 1000))
+    const totalMinutes = parseInt(Math.floor(totalSeconds / 60))
+    const totalHours = parseInt(Math.floor(totalMinutes / 60))
+
+    const seconds = parseInt(totalSeconds%60)
+    const minutes = parseInt(totalMinutes%60)
+    const hours = parseInt(totalHours%60)
+
+    return {seconds, minutes, hours}
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -37,21 +57,21 @@ const ImageCarousel = ({duration}) => {
         </Link>
         <div className="text-white text-3xl md:text-5xl lg:text-7xl font-extrabold absolute top-5 left-5 md:top-15 md:left-15 ">
           <h1>Super Flash Sale</h1>
-          <p className="md:mt-8">50% Off</p>
+          <p className="md:mt-8">50% Off </p>
         </div>
 
         <div className="absolute bottom-10 left-5 md:bottom-15 md:left-15">
           <div className="flex items-center sm:text-3xl md:text-4xl lg:text-6xl gap-2">
             <div className="font-bold bg-white min-w-fit px-3 py-2 rounded md:px-7 md:py-7 md:rounded-xl">
-              24
+              {getFormatedTime(time)?.hours}
             </div>
             <span className="text-white font-bold">:</span>
             <div className="font-bold bg-white min-w-fit px-3 py-2 rounded md:px-7 md:py-7 md:rounded-xl">
-              24
+              {getFormatedTime(time)?.minutes}
             </div>
             <span className="text-white font-bold">:</span>
             <div className="font-bold bg-white min-w-fit px-3 py-2 rounded md:px-7 md:py-7 md:rounded-xl">
-              24
+              {getFormatedTime(time)?.seconds}
             </div>
           </div>
         </div>

@@ -1,25 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import showImg from "../../asset/images/shoe.png";
-import { findDiscountedPrice } from '../shop/ProductCard';
-
+import { findDiscountedPrice } from "../shop/ProductCard";
 
 const SaleProductCard = ({ data }) => {
-
   return (
     <div className="w-full md:w-full flex flex-col gap-3 md:gap-5 border-2 p-4 md:p-6 rounded-xl border-[#eaefff] ">
-      <div className="relative w-40 h-40 md:w-full md:h-60 overflow-hidden">
+      <div className="relative w-50 h-50 md:w-full md:h-60 overflow-hidden">
         <img
           className="w-full h-full object-cover"
           src={data?.thumbnail}
           alt="product img"
         />
-        <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[18px] lg:text-[20px] px-3 py-1 rounded">
+        <div className="absolute z-2 top-0 bg-[#FF4858] text-white text-[12px] lg:text-[20px] px-2 md:px-3 py-1 rounded">
           Hot
         </div>
       </div>
       <div className="w-full flex flex-col gap-2 md:gap-4">
-        <h1 className="text-[#223263] font-[700] text-xl md:text-3xl ">
+        <h1 className="text-[#223263] font-[700] text-lg md:text-3xl ">
           {data?.title}
         </h1>
         <h2 className="text-md md:text-2xl text-[#40BFFF] font-[700]">

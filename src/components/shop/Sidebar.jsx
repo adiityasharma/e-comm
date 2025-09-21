@@ -16,7 +16,7 @@ const Sidebar = ({
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
-    <div className=" w-full h-full flex-col gap-5 mb-5">
+    <div className=" w-full h-full flex-col gap-5 md:mb-5">
       <div
         onClick={() => setIsFilterOpen(!isFilterOpen)}
         className="cursor-pointer w-full bg-[#F6F7F8] py-3 px-6 rounded-md flex items-center justify-between"

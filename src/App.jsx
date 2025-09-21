@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Shop from "./pages/Shop";
 import CategoryPage from "./pages/CategoryPage";
+import ProductDetails from "./pages/ProductDetails";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/category/:category" element={<CategoryPage />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </main>

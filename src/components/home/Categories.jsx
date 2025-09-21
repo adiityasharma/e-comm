@@ -46,10 +46,10 @@ const Categories = () => {
   return (
     <div className="w-full p-4 md:p-0">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl md:text-5xl font-bold">Category</h1>
+        <h1 className="text-lg md:text-5xl font-bold">Category</h1>
         <Link
           to={"/shop"}
-          className="text-xl md:text-5xl cursor-pointer hover:opacity-80 text-[#40BFFF] font-bold"
+          className="text-lg md:text-5xl cursor-pointer hover:opacity-80 text-[#40BFFF] font-bold"
         >
           More Categories
         </Link>

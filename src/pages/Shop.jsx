@@ -22,8 +22,16 @@ const Shop = () => {
   const [pageNo, setPageNo] = useState(1);
   const [priceRange, setPriceRange] = useState(100);
   const [searchCategory, setSearchCategory] = useState("");
-
   const [filterByBrand, setFilterByBrand] = useState("");
+
+  useEffect(() => {
+    if (items?.products?.length > 0) {
+      const filteredArr = items.products.filter(
+        (item) => item.brand === filterByBrand
+      );
+      setSortedProducts(filteredArr);
+    }
+  }, [filterByBrand]);
 
   useEffect(() => {
     if (items?.products?.length > 0) {
@@ -80,7 +88,7 @@ const Shop = () => {
       );
     } else {
       dispatch(fetchAllProducts({ productCount, pageNo }));
-      setSearchCategory("")
+      setSearchCategory("");
     }
   }, [productCount, pageNo, searchCategory]);
 
@@ -111,7 +119,7 @@ const Shop = () => {
           <div className="w-full py-10 flex items-center justify-center text-2xl">
             <Loader />
           </div>
-        ) : (
+        ) : sortedProducts.length > 0 ? (
           <div
             className={` ${
               layout === "Grid"
@@ -127,6 +135,12 @@ const Shop = () => {
                   product={product}
                 />
               ))}
+          </div>
+        ) : (
+          <div className="w-full py-5 text-2xl font-[700]">
+            <h1 className="text-center text-[#5e5e5e]">
+              No Products Available
+            </h1>
           </div>
         )}
         <Pagination setPageNo={setPageNo} pageNo={pageNo} />
