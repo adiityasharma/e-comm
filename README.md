@@ -16,6 +16,7 @@ A modern, responsive E-Commerce Frontend built with React. It provides users wit
 
 Deployed on: Vercel
 
+Live: https://e-comm-mu-green.vercel.app/
 
 ## Tech Stack
 
