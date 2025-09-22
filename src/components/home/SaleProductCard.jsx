@@ -9,7 +9,7 @@ const SaleProductCard = ({ data }) => {
       <div className="relative w-50 h-50 md:w-full md:h-60 overflow-hidden">
         <Link to={`/products/${data?.id}`}>
           <img
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover:scale-120 transition-all duration-300"
             src={data?.thumbnail}
             alt="product img"
           />

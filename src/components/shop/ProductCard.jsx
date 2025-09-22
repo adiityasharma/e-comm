@@ -28,7 +28,7 @@ const ProductCard = ({ product, layout }) => {
       >
         <Link to={`/products/${product?.id}`}>
           <img
-            className="w-full h-full object-cover bg-neutral-100"
+            className="w-full h-full object-cover bg-neutral-100 hover:scale-110 transition-all duration-300 "
             src={product?.thumbnail}
             alt="shoe image"
           />

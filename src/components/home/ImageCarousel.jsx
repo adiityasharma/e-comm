@@ -50,7 +50,7 @@ const ImageCarousel = ({duration}) => {
       <div className="relative w-full h-50 sm:h-70 md:h-100 lg:h-140 rounded-xl overflow-hidden ">
         <Link to={"/shop"}>
           <img
-            className="w-full h-full object-fill "
+            className="w-full h-full object-fill hover:scale-110 transition-all duration-500  "
             src={imageArr[index]}
             alt="banner image"
           />
